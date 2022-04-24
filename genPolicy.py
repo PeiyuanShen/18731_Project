@@ -60,6 +60,39 @@ def getAllPath(dic, curr, paths=None, current_path=None):
             getAllPath(dic, succ, paths, list(current_path))
     return paths
 
+def formatPreAuthorize(preAuthorize):
+    if len(preAuthorize) == 0:
+        return
+    preAuthorizeToCondition = {
+        'isAuthenticated': 'IsAuthenticated',
+        'isAdmin': 'ROLE_ADMIN',
+        'isOperator': 'ROLE_OPERATOR',
+        'isCommittee': 'ROLE_COMMITTEE',
+        'isTeamCaptain': 'ROLE_USER(team.getCaptain().getEmail().equals(user.getEmail()))',
+        'currentUserServiceImpl.canAccessUser': 'ROLE_ADMIN || ROLE_USER(user.getId().equals(userId))',
+        'currentUserServiceImpl.canAccessTeam': 'ROLE_ADMIN || ROLE_USER(team.getMembers().stream().anyMatch(u -> u.getEmail().equals(user.getEmail())))',
+        'currentUserServiceImpl.canEditTeam': 'ROLE_ADMIN || ROLE_USER(isTeamCaptain(team, user))',
+        'currentUserServiceImpl.canRemoveFromTeam': 'ROLE_ADMIN || ROLE_USER(isTeamCaptain(team, user)) || ROLE_USER(user.getEmail().equals(email))',
+        'currentUserServiceImpl.canAccessOrder': 'ROLE_ADMIN || ROLE_USER(order.getUser().getEmail().equals(user.getEmail()))',
+        'currentUserServiceImpl.canReserveSeat': 'ROLE_USER(userTeams.stream().map(Team::getMembers).anyMatch(members -> members.contains(owner)))',
+        'currentUserServiceImpl.canRevokeInvite': 'ROLE_ADMIN || ROLE_USER(teamInviteToken.getUser().equals(user)) || ROLE_USER(teamInviteToken.getTeam().getCaptain().equals(user))',
+        'currentUserServiceImpl.canAcceptInvite': 'ROLE_USER(teamInviteToken.getUser().equals(user))',
+        'currentUserServiceImpl.isTicketSender': 'ROLE_USER(ttt.getTicket().getOwner().equals(user))',
+        'currentUserServiceImpl.isTicketReceiver': 'ROLE_USER(ttt.getUser().equals(user))',
+        'currentUserServiceImpl.isTicketOwner': 'ROLE_USER(ticketService.getTicketById(ticketId).getOwner().equals(user))',
+    }
+    principal = []
+    preAuthorizes = preAuthorize[0].split("and")
+    for preAuthorize in preAuthorizes:
+        if "@" in preAuthorize:
+            preAuthorize = preAuthorize.split("@")[1]
+        if "hasRole" in preAuthorize:
+            principal.append("ROLE_" + preAuthorize.split("'")[1])
+        else:
+            principal.append(preAuthorizeToCondition[preAuthorize.split("(")[0]])
+    return principal
+
+
 def getAllAPI(path):
     api = {}
     files =[]
@@ -71,10 +104,12 @@ def getAllAPI(path):
         # print(fname)
         if(len(re.findall('@PreAuthorize.*[\n]+public class', data,re.MULTILINE))>0):
             for func in re.findall('(?! *public [a-zA-Z]+\(.*\) {)[public]? .* ([a-zA-Z]+)\(.*\) {', data):
-                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+func] = re.findall('@PreAuthorize\("(.*)"\)[\n]+public class', data,re.MULTILINE)
+                preAuthorize = re.findall('@PreAuthorize\("@?(.*)"\)[\n]+public class', data,re.MULTILINE)
+                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+func] = formatPreAuthorize(preAuthorize)
         else:
             for func in re.findall('(?! *public [a-zA-Z]+\(.*\) {)[public]? .* ([a-zA-Z]+)\(.*\) {', data):
-                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+func]  = re.findall('@PreAuthorize\("(.*)"\)\n(?: *@.*\n)* *.*'+func+"\(", data,re.MULTILINE)
+                preAuthorize= re.findall('@PreAuthorize\("@?(.*)"\)\n(?: *@.*\n)* *.*'+func+"\(", data,re.MULTILINE)
+                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+func] = formatPreAuthorize(preAuthorize)
     return api
 
 def genPolicy(dic, events, api):
@@ -89,8 +124,6 @@ def genPolicy(dic, events, api):
             for path in getAllPath(dic,key):
                 isSensitive = False
                 for f in path:
-                    if func == "ch.wisv.areafiftylan.users.controller.UserProfileRestController:addProfile":
-                        print(path)
                     funcname = (f.split()[0]+f.split()[2]).split("(")[0]
                     if funcname in events:
                         isSensitive = True
@@ -111,4 +144,4 @@ if __name__ == "__main__":
     api = getAllAPI(".")
     policy = genPolicy(parent2children,events,api)
     with open('policy.json', 'w') as f:
-        json.dump(policy, f, ensure_ascii=False, indent=4)
+        json.dump(policy, f, ensure_ascii=False, indent=2)

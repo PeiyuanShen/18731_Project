@@ -1,658 +1,655 @@
 {
-    "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity add(ch.wisv.areafiftylan.users.model.UserDTO)": [
-        {
-            "Principal": [],
-            "Action": "create",
-            "Resource": "Verificationtoken"
-        }
-    ],
-    "ch.wisv.areafiftylan.users.controller.UserProfileRestController: org.springframework.http.ResponseEntity addProfile(ch.wisv.areafiftylan.users.model.User,ch.wisv.areafiftylan.users.model.ProfileDTO)": [
-        {
-            "Principal": [
-                "isAuthenticated()",
-                "@currentUserServiceImpl.canAccessUser(principal, #userId)"
-            ],
-            "Action": "addProfile",
-            "Resource": "User"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.mailupdates.controller.SubscriptionController: org.springframework.http.ResponseEntity addSubscription(ch.wisv.areafiftylan.extras.mailupdates.model.SubscriptionDTO)": [
-        {
-            "Principal": [],
-            "Action": "addSubscription",
-            "Resource": "Subscription"
-        }
-    ],
-    "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity add(ch.wisv.areafiftylan.users.model.User,ch.wisv.areafiftylan.teams.model.TeamDTO)": [
-        {
-            "Principal": [
-                "isAuthenticated()"
-            ],
-            "Action": "create",
-            "Resource": "Team"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity assignOrderToUser(ch.wisv.areafiftylan.users.model.User,java.lang.Long)": [
-        {
-            "Principal": [
-                "isAuthenticated() and @currentUserServiceImpl.canAccessOrder(principal, #orderId)"
-            ],
-            "Action": "assignOrderToUser",
-            "Resource": "Order"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity transferTicket(java.lang.String,ch.wisv.areafiftylan.users.model.User)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.isTicketReceiver(principal, #token)"
-            ],
-            "Action": "transferTicket",
-            "Resource": "Ttt"
-        }
-    ],
-    "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity removeTeamMember(java.lang.Long,java.lang.String)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canRemoveFromTeam(principal, #teamId, #email)"
-            ],
-            "Action": "removeMember",
-            "Resource": "Team"
-        }
-    ],
-    "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity addRole(java.lang.Long,ch.wisv.areafiftylan.users.model.RoleDTO)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "addRole",
-            "Resource": "User"
-        }
-    ],
-    "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity deleteRole(java.lang.Long,ch.wisv.areafiftylan.users.model.RoleDTO)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "deleteRole",
-            "Resource": "User"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity createOrder(ch.wisv.areafiftylan.products.model.TicketDTO)": [
-        {
-            "Principal": [],
-            "Action": "create",
-            "Resource": "Order"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity addToOrder(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketDTO)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canAccessOrder(principal, #orderId)"
-            ],
-            "Action": "addTicketToOrder",
-            "Resource": "Order"
-        }
-    ],
-    "ch.wisv.areafiftylan.users.controller.UserProfileRestController: org.springframework.http.ResponseEntity addProfile(java.lang.Long,ch.wisv.areafiftylan.users.model.ProfileDTO)": [
-        {
-            "Principal": [
-                "isAuthenticated()",
-                "@currentUserServiceImpl.canAccessUser(principal, #userId)"
-            ],
-            "Action": "addProfile",
-            "Resource": "User"
-        }
-    ],
-    "ch.wisv.areafiftylan.users.controller.UserProfileRestController: org.springframework.http.ResponseEntity changeProfile(java.lang.Long,ch.wisv.areafiftylan.users.model.ProfileDTO)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canAccessUser(principal, #userId)"
-            ],
-            "Action": "addProfile",
-            "Resource": "User"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity addSeatGroup(ch.wisv.areafiftylan.seats.model.SeatGroupDTO)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "addSeats",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity removeSeatGroup(ch.wisv.areafiftylan.seats.model.SeatGroupDTO)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "removeSeats",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity assignTicket(ch.wisv.areafiftylan.products.model.AssignDTO)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "create",
-            "Resource": "Order"
-        },
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "assignOrderToUser",
-            "Resource": "Order"
-        },
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "adminApproveOrder",
-            "Resource": "Order"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.rfid.controller.RFIDController: org.springframework.http.ResponseEntity addRFIDLink(ch.wisv.areafiftylan.extras.rfid.model.RFIDLinkDTO)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "addRFIDLink",
-            "Resource": "Rfidlink"
-        }
-    ],
-    "ch.wisv.areafiftylan.teams.controller.TeamRestController: ch.wisv.areafiftylan.teams.model.Team update(java.lang.Long,ch.wisv.areafiftylan.teams.model.TeamDTO)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canEditTeam(principal, #teamId)"
-            ],
-            "Action": "update",
-            "Resource": "Team"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.sponsor.controller.SponsorController: org.springframework.http.ResponseEntity createSponsor(ch.wisv.areafiftylan.web.sponsor.model.Sponsor)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "createSponsor",
-            "Resource": "Sponsor"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.sponsor.controller.SponsorController: org.springframework.http.ResponseEntity deleteSponsor(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "deleteSponsor",
-            "Resource": "Sponsor"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity updateOrderStatusManual(long)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canAccessOrder(principal, #orderId)"
-            ],
-            "Action": "validateTicket",
-            "Resource": "Ticket"
-        },
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canAccessOrder(principal, #orderId)"
-            ],
-            "Action": "assignTicketToUser",
-            "Resource": "Ticket"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity deleteOrder(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "removeOrder",
-            "Resource": "Order"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity removeFromOrder(java.lang.Long,java.lang.Long)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canAccessOrder(principal, #orderId)"
-            ],
-            "Action": "removeTicketFromOrder",
-            "Resource": "Order"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity updateOrderStatus(java.lang.String)": [
-        {
-            "Principal": [],
-            "Action": "validateTicket",
-            "Resource": "Ticket"
-        },
-        {
-            "Principal": [],
-            "Action": "assignTicketToUser",
-            "Resource": "Ticket"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity approveOrder(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "adminApproveOrder",
-            "Resource": "Order"
-        }
-    ],
-    "ch.wisv.areafiftylan.security.authentication.AuthenticationController: org.springframework.http.ResponseEntity requestResetPassword(java.util.Map)": [
-        {
-            "Principal": [],
-            "Action": "requestResetPassword",
-            "Resource": "Passwordresettoken"
-        }
-    ],
-    "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity replaceUser(java.lang.Long,ch.wisv.areafiftylan.users.model.UserDTO)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canAccessUser(principal, #userId)"
-            ],
-            "Action": "replace",
-            "Resource": "User"
-        }
-    ],
-    "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity disableUser(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "lock",
-            "Resource": "User"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.rfid.controller.RFIDController: ch.wisv.areafiftylan.extras.rfid.model.RFIDLink removeRFIDLinkByRFID(java.lang.String)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "removeRFIDLink",
-            "Resource": "Rfidlink"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.rfid.controller.RFIDController: ch.wisv.areafiftylan.extras.rfid.model.RFIDLink deleteRFIDByTicketId(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "removeRFIDLink",
-            "Resource": "Rfidlink"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.committee.controller.CommitteeController: org.springframework.http.ResponseEntity addCommitteeMember(ch.wisv.areafiftylan.web.committee.model.CommitteeMember)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "addCommitteeMember",
-            "Resource": "Committee"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.committee.controller.CommitteeController: org.springframework.http.ResponseEntity deleteCommitteeMember(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "removeCommitteeMember",
-            "Resource": "Committee"
-        }
-    ],
-    "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity inviteTeamMember(java.lang.Long,java.lang.String)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canEditTeam(principal, #teamId) "
-            ],
-            "Action": "inviteMember",
-            "Resource": "Teaminvitetoken"
-        }
-    ],
-    "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity revokeTeamInvite(java.lang.String)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canRevokeInvite(principal, #token)"
-            ],
-            "Action": "revokeInvite",
-            "Resource": "Teaminvitetoken"
-        }
-    ],
-    "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity acceptTeamInvite(java.lang.String)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canAcceptInvite(principal, #token)"
-            ],
-            "Action": "addMemberByInvite",
-            "Resource": "Teaminvitetoken"
-        }
-    ],
-    "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity addTeamMember(java.lang.Long,java.lang.String)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "addMember",
-            "Resource": "Team"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity consume(java.lang.Long,java.lang.Long)": [
-        {
-            "Principal": [],
-            "Action": "consume",
-            "Resource": "Consumptionmaps"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity reset(java.lang.Long,java.lang.Long)": [
-        {
-            "Principal": [],
-            "Action": "reset",
-            "Resource": "Consumptionmaps"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity removeAvailableConsumption(java.lang.Long)": [
-        {
-            "Principal": [],
-            "Action": "removePossibleConsumption",
-            "Resource": "Possibleconsumptions"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity addAvailableConsumption(java.lang.String)": [
-        {
-            "Principal": [],
-            "Action": "addPossibleConsumption",
-            "Resource": "Possibleconsumptions"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity addBanner(ch.wisv.areafiftylan.web.banner.model.Banner)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "addBanner",
-            "Resource": "Banner"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity updateBanner(java.lang.Long,ch.wisv.areafiftylan.web.banner.model.Banner)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "update",
-            "Resource": "Banner"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity deleteBanner(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "removeBanner",
-            "Resource": "Banner"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity addTournament(ch.wisv.areafiftylan.web.tournament.model.Tournament)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "addTournament",
-            "Resource": "Tournament"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity editTournament(ch.wisv.areafiftylan.web.tournament.model.Tournament)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "replaceTournament",
-            "Resource": "Tournament"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity deleteTournament(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "deleteTournament",
-            "Resource": "Tournament"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.faq.controller.FaqController: org.springframework.http.ResponseEntity addQuestion(ch.wisv.areafiftylan.web.faq.model.FaqPair)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "addQuestion",
-            "Resource": "Faq"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.faq.controller.FaqController: org.springframework.http.ResponseEntity deleteQuestion(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "deleteQuestion",
-            "Resource": "Faq"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity deleteTicket(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "removeTicket",
-            "Resource": "Ticket"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity requestTicketTransfer(java.lang.Long,java.lang.String)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.isTicketOwner(principal, #ticketId)"
-            ],
-            "Action": "setupForTransfer",
-            "Resource": "Ttt"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity cancelTicketTransfer(java.lang.String)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.isTicketSender(principal, #token)"
-            ],
-            "Action": "cancelTicketTransfer",
-            "Resource": "Ttt"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity addTicketType(ch.wisv.areafiftylan.products.model.TicketType)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "addTicketType",
-            "Resource": "Tickettype"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity updateTicketType(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketType)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "updateTicketType",
-            "Resource": "Tickettype"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity updateTicketTypeBuyable(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketType)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "updateTicketType",
-            "Resource": "Tickettype"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity addOptionToType(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketOption)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "updateTicketType",
-            "Resource": "Tickettype"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity deleteTicketType(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "deleteTicketType",
-            "Resource": "Tickettype"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity addTicketOption(ch.wisv.areafiftylan.products.model.TicketOption)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "addTicketOption",
-            "Resource": "Ticketoption"
-        }
-    ],
-    "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity deleteTicketOption(java.lang.Long)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "deleteTicketOption",
-            "Resource": "Ticketoption"
-        }
-    ],
-    "ch.wisv.areafiftylan.security.authentication.AuthenticationController: org.springframework.http.ResponseEntity resetPassword(java.util.Map)": [
-        {
-            "Principal": [],
-            "Action": "resetPasswordByToken",
-            "Resource": "Passwordresettoken"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity reserveSingleSeat(java.lang.String,java.lang.Integer,java.lang.Long,ch.wisv.areafiftylan.users.model.User)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canReserveSeat(principal, #ticketId)",
-                "hasRole('ADMIN')"
-            ],
-            "Action": "reserveSeat",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity reserveSingleSeat(java.lang.String,java.lang.Integer)": [
-        {
-            "Principal": [
-                "@currentUserServiceImpl.canReserveSeat(principal, #ticketId)",
-                "hasRole('ADMIN')"
-            ],
-            "Action": "reserveSeat",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity clearSeat(java.lang.String,int)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "reserveSeat",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity setSeatLock(java.lang.String,int,java.lang.Boolean)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "setSeatLocked",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity setSeatGroupLock(java.lang.String,java.lang.Boolean)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "setSeatGroupLocked",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity setAllSeatsLock(java.lang.Boolean)": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "setAllSeatsLock",
-            "Resource": "Seat"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.mailupdates.controller.SubscriptionController: org.springframework.http.ResponseEntity removeSubscription(java.lang.Long)": [
-        {
-            "Principal": [],
-            "Action": "removeSubscription",
-            "Resource": "Subscription"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.committee.controller.CommitteeController: org.springframework.http.ResponseEntity deleteCommittee()": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "deleteCommittee",
-            "Resource": "Committee"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity deleteAllBanners()": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "deleteBanners",
-            "Resource": "Banner"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.sponsor.controller.SponsorController: org.springframework.http.ResponseEntity deleteAllSponsors()": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "deleteAllSponsors",
-            "Resource": "Sponsor"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity deleteAllTournaments()": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "deleteAllTournaments",
-            "Resource": "Tournament"
-        }
-    ],
-    "ch.wisv.areafiftylan.web.faq.controller.FaqController: org.springframework.http.ResponseEntity deleteFaq()": [
-        {
-            "Principal": [
-                "hasRole('ADMIN')"
-            ],
-            "Action": "deleteFaq",
-            "Resource": "Faq"
-        }
-    ],
-    "ch.wisv.areafiftylan.extras.mailupdates.controller.SubscriptionController: org.springframework.http.ResponseEntity removeAllSubscription()": [
-        {
-            "Principal": [
-                "hasRole('COMMITTEE')"
-            ],
-            "Action": "removeAllSubscriptions",
-            "Resource": "Subscription"
-        }
-    ]
+  "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity add(ch.wisv.areafiftylan.users.model.UserDTO)": [
+    {
+      "Principal": null,
+      "Action": "create",
+      "Resource": "Verificationtoken"
+    }
+  ],
+  "ch.wisv.areafiftylan.users.controller.UserProfileRestController: org.springframework.http.ResponseEntity addProfile(ch.wisv.areafiftylan.users.model.User,ch.wisv.areafiftylan.users.model.ProfileDTO)": [
+    {
+      "Principal": [
+        "IsAuthenticated"
+      ],
+      "Action": "addProfile",
+      "Resource": "User"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.mailupdates.controller.SubscriptionController: org.springframework.http.ResponseEntity addSubscription(ch.wisv.areafiftylan.extras.mailupdates.model.SubscriptionDTO)": [
+    {
+      "Principal": null,
+      "Action": "addSubscription",
+      "Resource": "Subscription"
+    }
+  ],
+  "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity add(ch.wisv.areafiftylan.users.model.User,ch.wisv.areafiftylan.teams.model.TeamDTO)": [
+    {
+      "Principal": [
+        "IsAuthenticated"
+      ],
+      "Action": "create",
+      "Resource": "Team"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity assignOrderToUser(ch.wisv.areafiftylan.users.model.User,java.lang.Long)": [
+    {
+      "Principal": [
+        "IsAuthenticated",
+        "ROLE_ADMIN || ROLE_USER(order.getUser().getEmail().equals(user.getEmail()))"
+      ],
+      "Action": "assignOrderToUser",
+      "Resource": "Order"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity transferTicket(java.lang.String,ch.wisv.areafiftylan.users.model.User)": [
+    {
+      "Principal": [
+        "ROLE_USER(ttt.getUser().equals(user))"
+      ],
+      "Action": "transferTicket",
+      "Resource": "Ttt"
+    }
+  ],
+  "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity removeTeamMember(java.lang.Long,java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(isTeamCaptain(team, user)) || ROLE_USER(user.getEmail().equals(email))"
+      ],
+      "Action": "removeMember",
+      "Resource": "Team"
+    }
+  ],
+  "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity addRole(java.lang.Long,ch.wisv.areafiftylan.users.model.RoleDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "addRole",
+      "Resource": "User"
+    }
+  ],
+  "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity deleteRole(java.lang.Long,ch.wisv.areafiftylan.users.model.RoleDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "deleteRole",
+      "Resource": "User"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity createOrder(ch.wisv.areafiftylan.products.model.TicketDTO)": [
+    {
+      "Principal": null,
+      "Action": "create",
+      "Resource": "Order"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity addToOrder(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(order.getUser().getEmail().equals(user.getEmail()))"
+      ],
+      "Action": "addTicketToOrder",
+      "Resource": "Order"
+    }
+  ],
+  "ch.wisv.areafiftylan.users.controller.UserProfileRestController: org.springframework.http.ResponseEntity addProfile(java.lang.Long,ch.wisv.areafiftylan.users.model.ProfileDTO)": [
+    {
+      "Principal": [
+        "IsAuthenticated"
+      ],
+      "Action": "addProfile",
+      "Resource": "User"
+    }
+  ],
+  "ch.wisv.areafiftylan.users.controller.UserProfileRestController: org.springframework.http.ResponseEntity changeProfile(java.lang.Long,ch.wisv.areafiftylan.users.model.ProfileDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(user.getId().equals(userId))"
+      ],
+      "Action": "addProfile",
+      "Resource": "User"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity addSeatGroup(ch.wisv.areafiftylan.seats.model.SeatGroupDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "addSeats",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity removeSeatGroup(ch.wisv.areafiftylan.seats.model.SeatGroupDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "removeSeats",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity assignTicket(ch.wisv.areafiftylan.products.model.AssignDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "create",
+      "Resource": "Order"
+    },
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "assignOrderToUser",
+      "Resource": "Order"
+    },
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "adminApproveOrder",
+      "Resource": "Order"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.rfid.controller.RFIDController: org.springframework.http.ResponseEntity addRFIDLink(ch.wisv.areafiftylan.extras.rfid.model.RFIDLinkDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "addRFIDLink",
+      "Resource": "Rfidlink"
+    }
+  ],
+  "ch.wisv.areafiftylan.teams.controller.TeamRestController: ch.wisv.areafiftylan.teams.model.Team update(java.lang.Long,ch.wisv.areafiftylan.teams.model.TeamDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(isTeamCaptain(team, user))"
+      ],
+      "Action": "update",
+      "Resource": "Team"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.sponsor.controller.SponsorController: org.springframework.http.ResponseEntity createSponsor(ch.wisv.areafiftylan.web.sponsor.model.Sponsor)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "createSponsor",
+      "Resource": "Sponsor"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.sponsor.controller.SponsorController: org.springframework.http.ResponseEntity deleteSponsor(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "deleteSponsor",
+      "Resource": "Sponsor"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity updateOrderStatusManual(long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(order.getUser().getEmail().equals(user.getEmail()))"
+      ],
+      "Action": "validateTicket",
+      "Resource": "Ticket"
+    },
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(order.getUser().getEmail().equals(user.getEmail()))"
+      ],
+      "Action": "assignTicketToUser",
+      "Resource": "Ticket"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity deleteOrder(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "removeOrder",
+      "Resource": "Order"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity removeFromOrder(java.lang.Long,java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(order.getUser().getEmail().equals(user.getEmail()))"
+      ],
+      "Action": "removeTicketFromOrder",
+      "Resource": "Order"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity updateOrderStatus(java.lang.String)": [
+    {
+      "Principal": null,
+      "Action": "validateTicket",
+      "Resource": "Ticket"
+    },
+    {
+      "Principal": null,
+      "Action": "assignTicketToUser",
+      "Resource": "Ticket"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.OrderRestController: org.springframework.http.ResponseEntity approveOrder(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "adminApproveOrder",
+      "Resource": "Order"
+    }
+  ],
+  "ch.wisv.areafiftylan.security.authentication.AuthenticationController: org.springframework.http.ResponseEntity requestResetPassword(java.util.Map)": [
+    {
+      "Principal": null,
+      "Action": "requestResetPassword",
+      "Resource": "Passwordresettoken"
+    }
+  ],
+  "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity replaceUser(java.lang.Long,ch.wisv.areafiftylan.users.model.UserDTO)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(user.getId().equals(userId))"
+      ],
+      "Action": "replace",
+      "Resource": "User"
+    }
+  ],
+  "ch.wisv.areafiftylan.users.controller.UserRestController: org.springframework.http.ResponseEntity disableUser(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "lock",
+      "Resource": "User"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.rfid.controller.RFIDController: ch.wisv.areafiftylan.extras.rfid.model.RFIDLink removeRFIDLinkByRFID(java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "removeRFIDLink",
+      "Resource": "Rfidlink"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.rfid.controller.RFIDController: ch.wisv.areafiftylan.extras.rfid.model.RFIDLink deleteRFIDByTicketId(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "removeRFIDLink",
+      "Resource": "Rfidlink"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.committee.controller.CommitteeController: org.springframework.http.ResponseEntity addCommitteeMember(ch.wisv.areafiftylan.web.committee.model.CommitteeMember)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "addCommitteeMember",
+      "Resource": "Committee"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.committee.controller.CommitteeController: org.springframework.http.ResponseEntity deleteCommitteeMember(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "removeCommitteeMember",
+      "Resource": "Committee"
+    }
+  ],
+  "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity inviteTeamMember(java.lang.Long,java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(isTeamCaptain(team, user))"
+      ],
+      "Action": "inviteMember",
+      "Resource": "Teaminvitetoken"
+    }
+  ],
+  "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity revokeTeamInvite(java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN || ROLE_USER(teamInviteToken.getUser().equals(user)) || ROLE_USER(teamInviteToken.getTeam().getCaptain().equals(user))"
+      ],
+      "Action": "revokeInvite",
+      "Resource": "Teaminvitetoken"
+    }
+  ],
+  "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity acceptTeamInvite(java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_USER(teamInviteToken.getUser().equals(user))"
+      ],
+      "Action": "addMemberByInvite",
+      "Resource": "Teaminvitetoken"
+    }
+  ],
+  "ch.wisv.areafiftylan.teams.controller.TeamRestController: org.springframework.http.ResponseEntity addTeamMember(java.lang.Long,java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "addMember",
+      "Resource": "Team"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity consume(java.lang.Long,java.lang.Long)": [
+    {
+      "Principal": null,
+      "Action": "consume",
+      "Resource": "Consumptionmaps"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity reset(java.lang.Long,java.lang.Long)": [
+    {
+      "Principal": null,
+      "Action": "reset",
+      "Resource": "Consumptionmaps"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity removeAvailableConsumption(java.lang.Long)": [
+    {
+      "Principal": null,
+      "Action": "removePossibleConsumption",
+      "Resource": "Possibleconsumptions"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.consumption.controller.ConsumptionController: org.springframework.http.ResponseEntity addAvailableConsumption(java.lang.String)": [
+    {
+      "Principal": null,
+      "Action": "addPossibleConsumption",
+      "Resource": "Possibleconsumptions"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity addBanner(ch.wisv.areafiftylan.web.banner.model.Banner)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "addBanner",
+      "Resource": "Banner"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity updateBanner(java.lang.Long,ch.wisv.areafiftylan.web.banner.model.Banner)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "update",
+      "Resource": "Banner"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity deleteBanner(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "removeBanner",
+      "Resource": "Banner"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity addTournament(ch.wisv.areafiftylan.web.tournament.model.Tournament)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "addTournament",
+      "Resource": "Tournament"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity editTournament(ch.wisv.areafiftylan.web.tournament.model.Tournament)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "replaceTournament",
+      "Resource": "Tournament"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity deleteTournament(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "deleteTournament",
+      "Resource": "Tournament"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.faq.controller.FaqController: org.springframework.http.ResponseEntity addQuestion(ch.wisv.areafiftylan.web.faq.model.FaqPair)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "addQuestion",
+      "Resource": "Faq"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.faq.controller.FaqController: org.springframework.http.ResponseEntity deleteQuestion(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "deleteQuestion",
+      "Resource": "Faq"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity deleteTicket(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "removeTicket",
+      "Resource": "Ticket"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity requestTicketTransfer(java.lang.Long,java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_USER(ticketService.getTicketById(ticketId).getOwner().equals(user))"
+      ],
+      "Action": "setupForTransfer",
+      "Resource": "Ttt"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity cancelTicketTransfer(java.lang.String)": [
+    {
+      "Principal": [
+        "ROLE_USER(ttt.getTicket().getOwner().equals(user))"
+      ],
+      "Action": "cancelTicketTransfer",
+      "Resource": "Ttt"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity addTicketType(ch.wisv.areafiftylan.products.model.TicketType)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "addTicketType",
+      "Resource": "Tickettype"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity updateTicketType(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketType)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "updateTicketType",
+      "Resource": "Tickettype"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity updateTicketTypeBuyable(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketType)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "updateTicketType",
+      "Resource": "Tickettype"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity addOptionToType(java.lang.Long,ch.wisv.areafiftylan.products.model.TicketOption)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "updateTicketType",
+      "Resource": "Tickettype"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity deleteTicketType(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "deleteTicketType",
+      "Resource": "Tickettype"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity addTicketOption(ch.wisv.areafiftylan.products.model.TicketOption)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "addTicketOption",
+      "Resource": "Ticketoption"
+    }
+  ],
+  "ch.wisv.areafiftylan.products.controller.TicketRestController: org.springframework.http.ResponseEntity deleteTicketOption(java.lang.Long)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "deleteTicketOption",
+      "Resource": "Ticketoption"
+    }
+  ],
+  "ch.wisv.areafiftylan.security.authentication.AuthenticationController: org.springframework.http.ResponseEntity resetPassword(java.util.Map)": [
+    {
+      "Principal": null,
+      "Action": "resetPasswordByToken",
+      "Resource": "Passwordresettoken"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity reserveSingleSeat(java.lang.String,java.lang.Integer,java.lang.Long,ch.wisv.areafiftylan.users.model.User)": [
+    {
+      "Principal": [
+        "ROLE_USER(userTeams.stream().map(Team::getMembers).anyMatch(members -> members.contains(owner)))"
+      ],
+      "Action": "reserveSeat",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity reserveSingleSeat(java.lang.String,java.lang.Integer)": [
+    {
+      "Principal": [
+        "ROLE_USER(userTeams.stream().map(Team::getMembers).anyMatch(members -> members.contains(owner)))"
+      ],
+      "Action": "reserveSeat",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity clearSeat(java.lang.String,int)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "reserveSeat",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity setSeatLock(java.lang.String,int,java.lang.Boolean)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "setSeatLocked",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity setSeatGroupLock(java.lang.String,java.lang.Boolean)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "setSeatGroupLocked",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.seats.controller.SeatRestController: org.springframework.http.ResponseEntity setAllSeatsLock(java.lang.Boolean)": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "setAllSeatsLock",
+      "Resource": "Seat"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.mailupdates.controller.SubscriptionController: org.springframework.http.ResponseEntity removeSubscription(java.lang.Long)": [
+    {
+      "Principal": null,
+      "Action": "removeSubscription",
+      "Resource": "Subscription"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.committee.controller.CommitteeController: org.springframework.http.ResponseEntity deleteCommittee()": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "deleteCommittee",
+      "Resource": "Committee"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.banner.controller.BannerController: org.springframework.http.ResponseEntity deleteAllBanners()": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "deleteBanners",
+      "Resource": "Banner"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.sponsor.controller.SponsorController: org.springframework.http.ResponseEntity deleteAllSponsors()": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "deleteAllSponsors",
+      "Resource": "Sponsor"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.tournament.controller.TournamentController: org.springframework.http.ResponseEntity deleteAllTournaments()": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "deleteAllTournaments",
+      "Resource": "Tournament"
+    }
+  ],
+  "ch.wisv.areafiftylan.web.faq.controller.FaqController: org.springframework.http.ResponseEntity deleteFaq()": [
+    {
+      "Principal": [
+        "ROLE_ADMIN"
+      ],
+      "Action": "deleteFaq",
+      "Resource": "Faq"
+    }
+  ],
+  "ch.wisv.areafiftylan.extras.mailupdates.controller.SubscriptionController: org.springframework.http.ResponseEntity removeAllSubscription()": [
+    {
+      "Principal": [
+        "ROLE_COMMITTEE"
+      ],
+      "Action": "removeAllSubscriptions",
+      "Resource": "Subscription"
+    }
+  ]
 }
