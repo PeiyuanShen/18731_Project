@@ -42,8 +42,8 @@ def getSensitiveEvents(filename):
     with open(filename) as file:
         for line in file:
             line = line[:-1].split("->")
-            line[0] = line[0][25:].replace("/",".")
-            events[line[0]] = [line[0].split(":")[1],line[1]]
+            line[0] = line[0][25:].replace("/",".").strip()
+            events[line[0]] = [line[0].split(":")[1].strip(),line[1].strip()]
     return events
 
 def getAllPath(dic, curr, paths=None, current_path=None):
@@ -92,6 +92,17 @@ def formatPreAuthorize(preAuthorize):
             principal.append(preAuthorizeToCondition[preAuthorize.split("(")[0]])
     return principal
 
+def getFuncName(func):
+    args=func[len(func.split("(")[0])+1:-1].split(",")
+    fargs=func.split("(")[0]+"("
+    for arg in args:
+        if arg == '':
+            break
+        fargs+=arg.split()[-2]+", "
+    if fargs[-1] == " ":
+        fargs=fargs[:-2]
+    fargs += ")"
+    return fargs
 
 def getAllAPI(path):
     api = {}
@@ -103,35 +114,56 @@ def getAllAPI(path):
         data = f.read()
         # print(fname)
         if(len(re.findall('@PreAuthorize.*[\n]+public class', data,re.MULTILINE))>0):
-            for func in re.findall('(?! *public [a-zA-Z]+\(.*\) {)[public]? .* ([a-zA-Z]+)\(.*\) {', data):
+            for func in re.findall('(?! *public [a-zA-Z]+\(.*\) {)[public]? .* ([a-zA-Z]+\(.*\)) {', data):
                 preAuthorize = re.findall('@PreAuthorize\("@?(.*)"\)[\n]+public class', data,re.MULTILINE)
-                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+func] = formatPreAuthorize(preAuthorize)
+                fargs = getFuncName(func)
+                # print(preAuthorize)
+                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+fargs] = formatPreAuthorize(preAuthorize)
         else:
-            for func in re.findall('(?! *public [a-zA-Z]+\(.*\) {)[public]? .* ([a-zA-Z]+)\(.*\) {', data):
-                preAuthorize= re.findall('@PreAuthorize\("@?(.*)"\)\n(?: *@.*\n)* *.*'+func+"\(", data,re.MULTILINE)
-                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+func] = formatPreAuthorize(preAuthorize)
+            for func in re.findall('(?! *public [a-zA-Z]+\(.*\) {)[public]? .* ([a-zA-Z]+\(.*\)) {', data):
+                preAuthorize= re.findall('@PreAuthorize\("@?(.*)"\)\n(?: *@.*\n)* *.*'+func.replace("(","\(").replace(")","\)"), data,re.MULTILINE)
+                fargs = getFuncName(func)
+                print(func,preAuthorize)
+                api[(fname[:-5].split("lancie-api/src/main/java/")[1].replace("/","."))+":"+fargs] = formatPreAuthorize(preAuthorize)
     return api
+
+def formatFuncName(func):
+    args = func[:-1].split("(")[1].split(",")
+    fargs = func.split("(")[0]+"("
+    for arg in args:
+        if arg == '':
+            break
+        fargs+=arg.split(".")[-1]+", "
+    if fargs[-1] == " ":
+        fargs=fargs[:-2]
+    fargs += ")"
+    return fargs
+
 
 def genPolicy(dic, events, api):
     policy = defaultdict(list)
     # print(getAllPath(dic,"ch.wisv.areafiftylan.users.controller.UserProfileRestController:addProfile"))
     for key, val in dic.items():
-        func = (key.split()[0]+key.split()[2]).split("(")[0]
-        if func in api:
+        func = (key.split()[0]+key.split()[2])
+        fargs = formatFuncName(func)
+        # print(fargs)
+        if fargs in api:
             # print(key)
             # print(func)
             # paths = getAllPath(dic,key)
             for path in getAllPath(dic,key):
                 isSensitive = False
                 for f in path:
-                    funcname = (f.split()[0]+f.split()[2]).split("(")[0]
+                    funcname = (f.split()[0]+" "+f.split()[2])
+                    funcname = formatFuncName(funcname)
                     if funcname in events:
                         isSensitive = True
                         e = events[funcname]
                         break
                         # print(f)
                 if isSensitive and not any([True for elem in policy[key] if e[0] == elem["Action"]]):
-                    policy[key].append({"Principal": api[func], "Action":e[0], "Resource": e[1].capitalize()})
+                    # print(fargs,api[fargs])
+                    policy[key].append({"Principal": api[fargs], "Action":e[0], "Resource": e[1].capitalize()})
     return policy
 
 if __name__ == "__main__":
@@ -142,6 +174,7 @@ if __name__ == "__main__":
     # printTree(parent2children)
     events = getSensitiveEvents("output.txt")
     api = getAllAPI(".")
+    # print(api)
     policy = genPolicy(parent2children,events,api)
     with open('policy.json', 'w') as f:
         json.dump(policy, f, ensure_ascii=False, indent=2)
