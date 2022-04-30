@@ -1,0 +1,130 @@
+\documentclass[twocolumn,10pt]{article}
+
+
+\usepackage{times}
+\usepackage{cite}
+\usepackage{multirow}
+\usepackage[tight,footnotesize]{subfigure}
+%\usepackage{subfig}
+
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\comment}[1]{}
+\newcommand{\eat}[1]{}
+\usepackage{booktabs, lastpage}
+
+\usepackage{mdframed, fancyvrb}
+\usepackage[scaled]{beramono}
+\definecolor{boxcolor}{gray}{0.9}
+\newmdenv[linecolor=boxcolor, backgroundcolor=boxcolor, skipabove=\parsep, skipbelow=\parsep, innerleftmargin=2pt, innerrightmargin=2pt]{codeblock}
+
+\newcommand{\myparait}[1]{\smallskip\noindent{\em {#1}:}~}
+\newcommand{\myparaq}[1]{\medskip\noindent{\bf {#1}?}~}
+\newcommand{\mypara}[1]{\medskip\noindent{\bf {#1}:}~}
+\newcommand{\myparatight}[1]{\smallskip\noindent{\bf {#1}:}~}
+
+\newcounter{packednmbr}
+\newenvironment{packedenumerate}{\begin{list}{\thepackednmbr.}{\usecounter{packednmbr}\setlength{\itemsep}{1pt}\addtolength{\labelwidth}{-5pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{3pt}}}{\end{list}}
+\newenvironment{packeditemize}{\begin{list}{$\bullet$}{\setlength{\itemsep}{1pt}\addtolength{\labelwidth}{-5pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{3pt}}}{\end{list}}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,      % false: boxed links; true: colored links
+  linkcolor=blue,       % color of internal links
+  citecolor=magenta,    % color of links to bibliography
+  filecolor=cyan,       % color of file links
+  urlcolor=red          % color of external links
+}
+
+\definecolor{shadecolor}{gray}{0.9}
+
+\frenchspacing
+\pagestyle{plain}
+
+\def\ala{{\`{a} la}~}
+\def\ie{{i.e.}}
+\def\eg{{e.g.}}
+\def\etal{{et al.}~}
+\def\wrt{{w.r.t.}~}
+\def\viz{viz.~}
+\def\vs{vs.~}
+\def\etc{etc.}
+
+
+\begin{document}
+\title{18731 Spring 2022 Project Final Report\\ Project Title Here} %of \\ Internet Routing Behavior
+
+\author{
+  Team Members
+}
+
+\maketitle
+
+\begin{abstract}
+  Quick 4-5 sentence abstract of the work:
+  1. Motivate problem 2. What is known 3. What you propose to do that is different 4. Key ideas/technical contributons  5.  Outcomes
+\end{abstract}
+
+
+\section{Introduction (1 page}
+
+\begin{itemize}
+  \item Para 1 what is the broad problem space you are working on
+  \item Para 2 what is the sub problem you are working on
+  \item Para 3 what is known from the prior work
+  \item Para 4 What are the shortcomings of prior work
+  \item Para 5 What is your works contribution
+  \item Para 6 what are the main ideas/approaches you are taking
+  \item Para 7 what has been implemented
+  \item Para 8 what are some of the key outcomes/performance reults
+\end{itemize}
+
+\section{Background 1 pg}
+
+what’s proposed already? What have others done already? What
+did they learn?
+
+
+taxnomomize prior work and highlight what is new/different in your work vs theirs
+
+
+\section{Design and Implementation 1-2pg}
+
+
+What are plausible alternatives you considered?
+
+provide block diagrams of how the system works, what are the interfaces between components
+
+what are the key ideas and technical challenges
+
+how did you implement/prototype said ideas
+
+\section{Evaluation 1-2pgs}
+
+what is your evaluation setup? methodology? metrics of interest?
+
+What did you do  test out the hypotheses? (E.g.
+measurements, simulations, constructing code)
+
+
+What are the key results .
+
+
+\section{Conclusions  and Limitations 0.25-0.5 pg}
+
+ {
+  \footnotesize
+  \raggedright
+  \bibliographystyle{abbrv}
+  \bibliography{draft}
+ }
+
+%\appendix
+%\input{concerns}
+
+\end{document}
+
