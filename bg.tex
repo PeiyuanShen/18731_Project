@@ -1,0 +1,43 @@
+\section{Background and Related Work} %1 page
+% what’s proposed already? What have others done already? What did they learn?
+% taxonomies prior work and highlight what is new/different in your work vs
+% theirs
+In this section, we give an overview of one of the most popular web application
+framework, Spring~\cite{spring+security:home}, and review prior work related to
+our projects.
+
+\subsection{Spring}
+
+Spring~\cite{spring+security:home} is said to be the most popular Java web
+application framework.
+%
+The Spring Framework is an application framework and inversion of control
+container for the Java platform.
+%
+Spring Security~\cite{spring+security:method} is a powerful authentication and
+access-control framework, which is the standard for securing Spring-based
+applications.
+%
+Spring security provides comprehensive and extensible support for both
+authentication and authorization, and prevents attacks like session fixation,
+clickjacking, etc.
+
+\subsection{Java Program Analysis}
+
+Doop~\cite{Bravenboer:2009:Doop} is a framework for Java pointer and taint
+analysis.
+%
+Doop specifies pointer analysis algorithms declaratively using Datalog: a
+logic-based language for defining recursive relations.
+%
+At its core, Doop is a collection of various analyses expressed in the form of
+Datalog rules.
+
+Antoniadis \etal~\cite{Antoniadis+etal:2020:Java} in 2020 proposed a static
+analysis framework called JackEE for Java Application, and introduced a
+sound-modulo-analysis model of Java HashMap to improve precision and
+scalability. JackEE can analyze both Servlets and Spring APIs. JackEE is also
+evaluated through realistic benchmarks. It is proved to have a higher
+reachability than some other popular tools like Doop~\footnote{Publicly
+  available at: http://doop.program-analysis.org/.}.
+

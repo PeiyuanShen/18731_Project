@@ -6,7 +6,7 @@
 \usepackage{multirow}
 \usepackage[tight,footnotesize]{subfigure}
 %\usepackage{subfig}
-
+\usepackage{listings}
 \usepackage{url}
 \usepackage{xspace}
 \usepackage{amsmath}
@@ -16,12 +16,13 @@
 \newcommand{\comment}[1]{}
 \newcommand{\eat}[1]{}
 \usepackage{booktabs, lastpage}
-
+\usepackage{tikz}
+\usetikzlibrary{positioning}
 \usepackage{mdframed, fancyvrb}
 \usepackage[scaled]{beramono}
+\usepackage{rotating}
 \definecolor{boxcolor}{gray}{0.9}
 \newmdenv[linecolor=boxcolor, backgroundcolor=boxcolor, skipabove=\parsep, skipbelow=\parsep, innerleftmargin=2pt, innerrightmargin=2pt]{codeblock}
-
 \newcommand{\myparait}[1]{\smallskip\noindent{\em {#1}:}~}
 \newcommand{\myparaq}[1]{\medskip\noindent{\bf {#1}?}~}
 \newcommand{\mypara}[1]{\medskip\noindent{\bf {#1}:}~}
@@ -54,77 +55,86 @@
 \def\vs{vs.~}
 \def\etc{etc.}
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \begin{document}
-\title{18731 Spring 2022 Project Final Report\\ Project Title Here} %of \\ Internet Routing Behavior
+\title{18731 Spring 2022 Project Final Report\\
+  Security Policy Modeling For Web Applications}
 
 \author{
-  Team Members
+  Rongjian Xiao \\ rongjiax@andrew.cmu.edu \and
+  Peiyuan Shen \\ peiyuans@andrew.cmu.edu \and
+  Sicheng Mao \\ sichengm@andrew.cmu.edu \and
+  Qingxuan Kuang \\ qkuang@andrew.cmu.edu
 }
 
 \maketitle
 
 \begin{abstract}
-  Quick 4-5 sentence abstract of the work:
-  1. Motivate problem 2. What is known 3. What you propose to do that is different 4. Key ideas/technical contributons  5.  Outcomes
+  % Quick 4-5 sentence abstract of the work: 1. Motivate problem 2. What is
+  % known 3. What you propose to do that is different 4. Expected outcomes
+
+  % Motivate problem
+  Analyzing security policies is important for access management of web
+  applications.
+  % What is known
+  Many web frameworks provide Domain-Specific Languages (DSLs) to specify
+  security policies for APIs.
+  %
+  However, many security policies are often not specific or missing.
+  % What you propose to do that is different
+  This project proposed a DSL to describe the security policies of analyzed
+  systems and perform a taint analysis on a target web application system to
+  synthesize the security policies.
+  % Expected outcomes
+  Given the security policies we synthesized, developers can easily identify
+  potential vulnerabilities of the target system and improve development
+  efficiency.
+
 \end{abstract}
 
+\input{intro}
+\input{bg}
+\input{design}
+\input{eval}
 
-\section{Introduction (1 page}
-
-\begin{itemize}
-  \item Para 1 what is the broad problem space you are working on
-  \item Para 2 what is the sub problem you are working on
-  \item Para 3 what is known from the prior work
-  \item Para 4 What are the shortcomings of prior work
-  \item Para 5 What is your works contribution
-  \item Para 6 what are the main ideas/approaches you are taking
-  \item Para 7 what has been implemented
-  \item Para 8 what are some of the key outcomes/performance reults
-\end{itemize}
-
-\section{Background 1 pg}
-
-what’s proposed already? What have others done already? What
-did they learn?
-
-
-taxnomomize prior work and highlight what is new/different in your work vs theirs
-
-
-\section{Design and Implementation 1-2pg}
-
-
-What are plausible alternatives you considered?
-
-provide block diagrams of how the system works, what are the interfaces between components
-
-what are the key ideas and technical challenges
-
-how did you implement/prototype said ideas
-
-\section{Evaluation 1-2pgs}
-
-what is your evaluation setup? methodology? metrics of interest?
-
-What did you do  test out the hypotheses? (E.g.
-measurements, simulations, constructing code)
-
-
-What are the key results .
-
-
-\section{Conclusions  and Limitations 0.25-0.5 pg}
+\section{Conclusions and Limitations}% 0.25-0.5 pg}
 
  {
   \footnotesize
   \raggedright
   \bibliographystyle{abbrv}
-  \bibliography{draft}
+  \bibliography{bib}
  }
 
-%\appendix
-%\input{concerns}
+\newpage
+\onecolumn
+\section{Appendix - Code}
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+\subsection*{\centering \large genPolicy.py}
+\lstinputlisting[label={lst:diffs}, language=Python]{genPolicy.py}
 
 \end{document}
 

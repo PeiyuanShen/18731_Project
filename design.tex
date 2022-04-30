@@ -1,0 +1,59 @@
+\section{Design}% 1-2pg}
+% What are plausible alternatives you considered?
+
+% provide block diagrams of how the system works, what are the interfaces between
+% components
+
+% what are the key ideas and technical challenges
+
+% how did you implement/prototype said ideas
+\begin{figure}[tbp]
+  \begin{tikzpicture}
+
+    \node [draw,
+      minimum width=2cm,
+      minimum height=1.2cm,
+    ]  (app) {Spring Web Applications};
+
+    \node [draw,
+      minimum width=2cm,
+      minimum height=1.2cm,
+      right=1.5cm of app,
+    ]  (doop) {Doop};
+
+    \node [draw,
+      minimum width=2cm,
+      minimum height=1.2cm,
+      below=1cm of app,
+    ]  (syn) {Policy Synthesizer};
+
+    \node [draw,
+      minimum width=2cm,
+      minimum height=1.2cm,
+      right=1.2cm of syn,
+    ]  (detect) {Detect Vulnerabilities};
+
+    \draw[-stealth] (app.east) -- (doop.west)
+    node[midway,above]{*.jar file};
+
+    \draw[-stealth] (app.south) -- (syn.north)
+    node[midway,right]{API codes};
+
+    \draw[-stealth] (doop.south) -- (syn.north)
+    node[midway,right]{CallGraphEdge.csv};
+
+    \draw[-stealth] (syn.east) -- (detect.west)
+    node[midway,above]{Policies};
+
+  \end{tikzpicture}
+  \caption{System block diagram.}
+  \label{fig:desgin}
+\end{figure}
+
+\subsection{Overview}
+
+\subsection{Policy Synthesizer}
+
+\subsubsection{Identify security-sensitive events}
+\subsubsection{Construct calling-context topology}
+\subsubsection{Generate security policies}

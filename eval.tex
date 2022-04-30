@@ -1,0 +1,35 @@
+\section{Evaluation}% 1-2pgs}
+
+% what is your evaluation setup? methodology? metrics of interest?
+
+% What did you do  test out the hypotheses? (E.g.
+% measurements, simulations, constructing code)
+
+
+% What are the key results .
+
+\subsection{Implementation}
+
+\subsection{Vulnerabilities Detection}
+
+\onecolumn
+\begin{sidewaysfigure}[p]
+  \caption{Manually detected vulnerabilities in LANcie API.}
+  \label{tab:api}
+  \centering
+  \begin{tabular}{ |p{0.15\columnwidth} | p{0.15\columnwidth} | p{0.3\columnwidth} | p{0.2\columnwidth}|}
+    \hline
+    File                                                       & Function & Policy & Vulnerabilities \\
+    \hline
+    ch.wisv.areafiftylan. users.controller. UserRestController &
+    org.springframework. http.ResponseEntity add(UserDTO)      &
+    \begin{lstlisting}
+"Principal": null,
+"Action": "create(UserDTO)",
+"Resource": "User"
+    \end{lstlisting}                                     &
+    Modify the database without checking the role                                                    \\
+    \hline
+  \end{tabular}
+\end{sidewaysfigure}
+\twocolumn
