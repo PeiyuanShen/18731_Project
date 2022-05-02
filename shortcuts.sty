@@ -1,0 +1,26 @@
+\RequirePackage{etoolbox}
+
+% These macros are intended to be used as a word. Just pretend it is like any
+% other word and do not insert any special treatment for the period. Examples:
+% * Pooh \etal proved the conjecture by Winnie \etal.
+% * Was the first proof of this by Pooh \etal or by Winnie \etal?
+\protected\def\etal{et~al\@ifnextchar.{}{.\@\xspace}}
+\protected\def\etc{etc\@ifnextchar.{}{.\@\xspace}}
+
+% Some publication styles spell the float type in full (e.g., "Figure X") and
+% some with abbreviations (e.g., "Fig. 1"). We use macros for consistency.
+\newcommand*\fref[1]{Figure~\ref{#1}}
+\newcommand*\fsref[1]{Figures~\ref{#1}}
+\newcommand*\lref[1]{Listing~\ref{#1}}
+\newcommand*\lsref[1]{Listings~\ref{#1}}
+\newcommand*\tref[1]{Table~\ref{#1}}
+\newcommand*\tsref[1]{Tables~\ref{#1}}
+\newcommand*\sref[1]{\S\ref{#1}}
+\newcommand*\chref[1]{ch.~\ref{#1}}
+
+% Special typesetting: symbols
+\newcommand*\cAnd{\texttt{\&\&}\xspace}
+\newcommand*\cOr{\texttt{||}\xspace}
+
+% Special typesetting: proper nouns
+\protected\def\lancie{LANcie-API}
