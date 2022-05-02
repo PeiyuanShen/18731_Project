@@ -24,6 +24,8 @@ clickjacking, etc.
 
 \subsection{Java Program Analysis}
 
+An access control policy is an expressive specification of what resources can be accessed, by whom, and under what conditions. Bakers \etal~\cite{Backes+etal:2018:Zelkova} presents a formalization of the Amazon Web Services (AWS) policy language  that lets users govern access to AWS resources. This paper also presents an analysis tool, ZELKOVA, for verifying policy properties.
+
 Doop~\cite{Bravenboer:2009:Doop} is a framework for Java pointer and taint
 analysis.
 %
@@ -40,4 +42,8 @@ scalability. JackEE can analyze both Servlets and Spring APIs. JackEE is also
 evaluated through realistic benchmarks. It is proved to have a higher
 reachability than some other popular tools like Doop~\footnote{Publicly
   available at: http://doop.program-analysis.org/.}.
+  
+Rather than taking a specification of this logic as input, RoleCast \etal~\cite{10.1145/2048066.2048146} is a first system capable of statically identifying security logic that mediates security-sensitive events in Web applications. It identifies security-critical variables and applies role-specific variable consistency analysis to find missing security checks. RoleCast performs well for PHP and JSP applications. This paper also demonstrated examples of bad security policies.
+
+Benjamin \etal~\cite{inproceedings} proposes a technique, called EventScope to extend the vulnerability identification to SDN \cite{6994333}. EventScope automatically analyzes SDN control plane event usage, discovers candidate vulnerabilities based on missing event-handling routines, and validates vulnerabilities based on data plane effects.
 
