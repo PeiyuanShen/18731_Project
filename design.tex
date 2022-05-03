@@ -1,14 +1,9 @@
-\section{Design}% 1-2pg}
-% What are plausible alternatives you considered?
+\section{Design Overview}% 1-2pg}
 
-% provide block diagrams of how the system works, what are the interfaces between
-% components
+% In this section, we present the overall design of our system and explain the
+% structure of our policy synthesizer in detail.
 
-% what are the key ideas and technical challenges
-
-% how did you implement/prototype said ideas
-\begin{figure}[htp]
-  % \begin{figure}[tbp]
+\begin{figure}[tbp]
   \begin{tikzpicture}
 
     \node [draw,
@@ -51,14 +46,34 @@
   \label{fig:desgin}
 \end{figure}
 
-\subsection{Overview}
-Given a target spring web application (we chose lancie api here), we first used Doop to do taint analysis on the target web application, which generates the corresponding analysis file (e.g. CallGraphEdge.csv). We then designed and implemented our security policy synthesizer that analyzes the taint analysis output together with its API codes, to generate the security policies in our designed format. In the end, we detected potential vulnerabilities by manually analyzing the generated policies. The overall design of our workflow is shown as Figure \ref{fig:desgin}.
+% \subsection{Overview}
+Given a target spring web application (we chose lancie api here), we first used
+Doop to do taint analysis on the target web application, which generates the
+corresponding analysis file (e.g. CallGraphEdge.csv). We then designed and
+implemented our security policy synthesizer that analyzes the taint analysis
+output together with its API codes, to generate the security policies in our
+designed format. In the end, we detected potential vulnerabilities by manually
+analyzing the generated policies. The overall design of our workflow is shown as
+Figure \ref{fig:desgin}.
 
-The main work lies in the policy synthesizer design. We further separated it into three steps: first, identify security-sensitive events by analyzing the application codes; second, construct calling-context topology by analyzing the Doop generated analysis file; and third, generate security policies by getting the call-chain paths for all function calls that involve security-sensitive events.
+The main work lies in the policy synthesizer design. We further separated it
+into three steps: first, identify security-sensitive events by analyzing the
+application codes; second, construct calling-context topology by analyzing the
+Doop generated analysis file; and third, generate security policies by getting
+the call-chain paths for all function calls that involve security-sensitive
+events.
 
-\subsection{Policy Synthesizer}
+\section{Policy Synthesizer}
+\label{sec:policy}
 
-\subsubsection{Identify security-sensitive events}
+Our policy synthesizer takes the original API code together with analysis files
+from Doop as inputs and outputs security policies for each of the API in the
+spring web application.
+%
+This section describes our algorithm to generate security policies.
+%
+
+\subsection{Security-Sensitive Events Identification}
 To generate security policies, it is important to first define what are the
 security vulnerabilities, and recognize those security-sensitive events. There
 are many types of possible security problems, including data safety,
@@ -68,21 +83,29 @@ queries that insert, delete, or update the database.
 
 By analyzing the API codes of this specific code repository, we concluded that
 all the database related class are implemented from spring interface
-$JpaRepository$
-\footnote{https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html},
-and end with name $Repository$. By analyzing the available methods in
-JpaRepository, we treated all methods that start with $save$ and $delete$ as
-operations that will potentially modify the database. To conclude, we treat all
-statements that conform to regex expression $*Repository.save*$ or
-$*Repository.delete*$ as those could affect the integrity of the database. After
-locating these security-sensitive statements, we wrote a script to extract their
-corresponding class and method names, and output in the format of
-$classname:methodname(parameters...) \rightarrow return type$, same as the Doop
-generated analysis file format. These security-sensitive methods later serve as
-the root for finding functions that involve security-sensitive events.
+\textit{JpaRepository} \footnote{Publicly available at:
+  \url{https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html}.},
+and end with name \textit{Repository}. By analyzing the available methods in
+JpaRepository, we treated all methods that start with \textit{save} and
+\textit{delete} as operations that will potentially modify the database. To
+conclude, we treat all statements that conform to regex expression
+\textit{$*$Repository.save$*$} or \textit{$*$Repository.delete$*$} as those
+could affect the integrity of the database. After locating these
+security-sensitive statements, we wrote a script to extract their corresponding
+class and method names, and output in the format of
+\textit{className:methodName(arguments...) $\rightarrow$ return type}, same as
+the Doop generated analysis file format. These security-sensitive methods later
+serve as the root for finding functions that involve security-sensitive events.
 
 
-\subsubsection{Construct calling-context topology}
+\subsection{Calling-Context Topology Construction}
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.48\textwidth]{img/caller2callee.png}
+  \caption{Examples of three callers and lists of corresponding callees}
+  \label{caller2callee}
+\end{figure}
 
 After identifying security-sensitive events, we build a topo graph of contexts
 who start from those events, and end at program entry points. In our case, we
@@ -100,14 +123,8 @@ callers, and values are lists of callees. On the other hand, the keys of the
 second dictionary \textit{child2parents} are callees and values are lists of
 callers.
 
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=0.48\textwidth]{img/caller2callee.png}
-  \caption{Examples of three callers and lists of corresponding callees}
-  \label{caller2callee}
-\end{figure}
 
-\subsubsection{Generate security policies}
+\subsection{Security Policy Generation}
 
 \begin{figure} [btp]
   \small
@@ -137,6 +154,29 @@ A policy consists of a list of statements.
 Each statement is a tuple that contains three elements: principal, action, and
 resource.
 %
-The principal construct
+The principal construct is used to specify users with which role or under
+certain condition are granted access to the action and resource.
+%
+The action construct specifies the list of actions that are allowed to be
+performed on the corresponding resource.
+%
+The resource construct specifies the list of resources in which access is
+granted.
 
-
+To generate policies for each API in the web application, we compute a set of
+security-sensitive events and construct a calling-context graph.
+%
+For each API in the web application, we find all the call-chain path from the
+API to security-sensitive events we detected in the calling-context graph.
+%
+Each call-chain path is one policy for the API.
+%
+Principal is obtained from the preAuthorize condition defined by the application
+for the API.
+%
+We created a table to convert the condition in preAuthorize to Principal.
+%
+Action is defined as the method name fo the corresponding security-sensitive
+event appeared on the path.
+%
+Resource is defined as the return type of the security-sensitive event function.

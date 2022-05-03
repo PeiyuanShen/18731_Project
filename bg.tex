@@ -51,7 +51,7 @@ sound-modulo-analysis model of Java HashMap to improve precision and
 scalability. JackEE can analyze both Servlets and Spring APIs. JackEE is also
 evaluated through realistic benchmarks. It is proved to have a higher
 reachability than some other popular tools like Doop~\footnote{Publicly
-  available at: http://doop.program-analysis.srg/.}.
+  available at: \url{http://doop.program-analysis.srg/}.}.
 
 Tripp \etal~\cite{10.1145/1542476.1542486} designed a static Taint Analysis for
 Java (TAJ) that can analyze applications of any size, especially industry-length
@@ -79,21 +79,24 @@ identifies security-critical variables and applies role-specific variable
 consistency analysis to find missing security checks. RoleCast performs well for
 PHP and JSP applications.
 
-Arzt \etal~\cite{10.1145/2594291.2594299} present FlowDroid, a static taint
+Arzt \etal~\cite{10.1145/2594291.2594299} presented FlowDroid, a static taint
 analysis for Android applications, which makes use of Android's precise
 lifecycle to handle callbacks, and context, flow, field and object-sensitivity
 to minimize faults. They proposed DroidBench, for Android applications
-taint-analysis evaluation. Yang \etal~\cite{6394931} proposes an approach called
+taint-analysis evaluation.
+
+Yang \etal~\cite{6394931} proposed an approach called
 Leak Miner for detecting information leakage on Android applications on market
 site before users download them, which avoids runtime overhead to normal usage.
+
 Pauck \etal~\cite{10.1145/3236024.3236029} present ReproDroid, a framework
 allowing the accurate comparison of Android taint analysis tools, inferring the
 ground truth for data leaks in apps, in automatically applying tools to
 benchmarks, and in evaluating the obtained results.
 
-Ujcich \etal~\cite{Ujcich+etal:2020:EventScope} proposed a technique called
-EventScope to extend the vulnerability identification~\cite{6994333} to SDN.
-EventScope automatically analyzes SDN control plane event usage, discovers
+Ujcich \etal~\cite{Ujcich+etal:2020:EventScope} in 2020 proposed a technique
+called EventScope to extend the vulnerability identification~\cite{6994333} to
+SDN. EventScope automatically analyzes SDN control plane event usage, discovers
 candidate vulnerabilities based on missing event-handling routines, and
 validates vulnerabilities based on data plane effects.
 
