@@ -19,12 +19,35 @@ list of security policies for developers to reason about.
 
 %   \item Para 3 what is known from the prior work
 %   \item Para 4 What are the shortcomings of prior work
+TODO
 
 %   \item Para 5 What is your works contribution
 %   \item Para 6 what are the main ideas/approaches you are taking
+In this project, we present a security policy synthesizer that automatically
+generates security policy for web applications.
+%
+Given a web application, we first send it to Doop to perform taint analysis to
+get the analysis file that contains all invocation-callee relationship.
+%
+Our synthesizer takes the analysis file and the source code of the application
+as inputs and synthesis polices for each API in the application.
+%
+We separated our security policy synthesizer into three steps:
+security-sensitive events identification, calling-context topology construction,
+and security policy generation.
+
 %   \item Para 7 what has been implemented
 %   \item Para 8 what are some of the key outcomes/performance results
-In this project we present a security policy synthesizer
+Due to time constraints, we only applied our security policy synthesizer to one
+spring web application: \lancie\footnote{Publicly available at:
+  \url{https://github.com/AreaFiftyLAN/lancie-api.}}.
+%
+We checked the policies generated and manually detected potential
+vulnerabilities in this web application.
+%
+Results show that all policies generated are as expected and we detected several
+vulnerabilities in \lancie.
+
 
 % We separate the whole project to 4 parts below.
 % \begin{enumerate}
@@ -50,11 +73,11 @@ In this project we present a security policy synthesizer
 % Although we have obtained this result, doop itself has compatibility problems
 % (not compatible with Mac OS), which we cannot solve.
 
-In this project we are using lancie api~\footnote{Publicly available at:
-  \url{https://github.com/AreaFiftyLAN/lancie-api.}} for analysis use case.
-%
-Through the analysis of lancie api, we design a simple modeling language below
-that describes security policies.
+% In this project we are using lancie api~\footnote{Publicly available at:
+%   \url{https://github.com/AreaFiftyLAN/lancie-api.}} for analysis use case.
+% %
+% Through the analysis of lancie api, we design a simple modeling language below
+% that describes security policies.
 % \begin{itemize}
 %   \item Policy $\rightarrow$ Statement
 %   \item Principal $\rightarrow$ (Role $|$ Role(Condition) $|$ IsAuthenticated)
@@ -66,11 +89,11 @@ that describes security policies.
 %   \item Resource $\rightarrow$ string$*$
 % \end{itemize}
 
-We have written a program that scans the lancie api project file, identifies
-security-sensitive events, and automatically generates corresponding
-policies (Figure \ref{fig:policies}) based on these Identify security-sensitive
-events and call graph. Then we detected Potential Vulnerabilities based on these
-policies.
+% We have written a program that scans the lancie api project file, identifies
+% security-sensitive events, and automatically generates corresponding
+% policies (Figure \ref{fig:policies}) based on these Identify security-sensitive
+% events and call graph. Then we detected Potential Vulnerabilities based on these
+% policies.
 % \begin{figure}[htp]
 %   \centering
 %   \includegraphics[width=0.45\textwidth]{img/policies.png}

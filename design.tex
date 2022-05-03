@@ -3,7 +3,7 @@
 % In this section, we present the overall design of our system and explain the
 % structure of our policy synthesizer in detail.
 
-\begin{figure}[tbp]
+\begin{figure}[btp]
   \begin{tikzpicture}
 
     \node [draw,
@@ -47,19 +47,18 @@
 \end{figure}
 
 % \subsection{Overview}
-Given a target spring web application (we chose lancie api here), we first used
-Doop to do taint analysis on the target web application, which generates the
-corresponding analysis file (e.g. CallGraphEdge.csv). We then designed and
-implemented our security policy synthesizer that analyzes the taint analysis
-output together with its API codes, to generate the security policies in our
-designed format. In the end, we detected potential vulnerabilities by manually
-analyzing the generated policies. The overall design of our workflow is shown as
-Figure \ref{fig:desgin}.
+Given a target spring web application, we use Doop to perform taint analysis on
+the target web application to generate the corresponding analysis file (e.g.
+CallGraphEdge.csv). Our security policy synthesizer analyzes the taint analysis
+output together with its API code to generate the security policies in our
+designed format. In the end, we detect potential vulnerabilities by manually
+analyzing the generated policies. The overall design of our workflow is as shown
+in Figure \ref{fig:desgin}.
 
 The main work lies in the policy synthesizer design. We further separated it
-into three steps: first, identify security-sensitive events by analyzing the
-application codes; second, construct calling-context topology by analyzing the
-Doop generated analysis file; and third, generate security policies by getting
+into three steps: i) identify security-sensitive events by analyzing the
+application codes;  ii) construct calling-context topology by analyzing the
+Doop generated analysis file, and iii) generate security policies by getting
 the call-chain paths for all function calls that involve security-sensitive
 events.
 
@@ -75,13 +74,13 @@ This section describes our algorithm to generate security policies.
 
 \subsection{Security-Sensitive Events Identification}
 To generate security policies, it is important to first define what are the
-security vulnerabilities, and recognize those security-sensitive events. There
-are many types of possible security problems, including data safety,
+security vulnerabilities and then recognize those security-sensitive events.
+There are many types of possible security problems, including data safety,
 authorization control, etc. In this project, we consider all operations that may
 affect the integrity of database to be security-sensitive events, which includes
 queries that insert, delete, or update the database.
 
-By analyzing the API codes of this specific code repository, we concluded that
+By analyzing the API code of some spring web applications, we concluded that
 all the database related class are implemented from spring interface
 \textit{JpaRepository} \footnote{Publicly available at:
   \url{https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html}.},
@@ -109,7 +108,7 @@ serve as the root for finding functions that involve security-sensitive events.
 
 After identifying security-sensitive events, we build a topo graph of contexts
 who start from those events, and end at program entry points. In our case, we
-used Doop to make taint analysis on lancie api, which generates the many
+used Doop to make taint analysis on a web application, which generates the many
 analysis files, including \textit{CallGraphEdge.csv}. Caller function
 information can be extracted from the second column of
 \textit{CallGraphEdge.csv}, and information of a callee function that is called
@@ -144,7 +143,7 @@ callers.
 We define our policy language in a simplified abstract syntax.
 %
 We take inspiration from the simplified abstract
-syntax~\cite{Backes+etal:2018:policy} defined for AWS and shows the abstract
+syntax~\cite{Backes+etal:2018:Zelkova} defined for AWS and shows the abstract
 syntax for our designed policy language in \fref{fig:dsl}.
 %
 In this syntax, $*$ denotes a list of valued elements.
