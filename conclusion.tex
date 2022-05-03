@@ -1,0 +1,29 @@
+\section{Conclusions and Limitations}
+
+We presented a security policy synthesizer for spring web applications.
+%
+Our security policy synthesizer can automatically synthesis security policies
+for each of the API in the web application.
+%
+Our synthesizer takes three steps to generate the policies: security-sensitive
+events identification, calling-context topology construction, and security
+policy generation.
+%
+We applied our security policy synthesizer on \lancie and manually checked the
+policies generated and detected security vulnerabilities in this application.
+%
+Results show that \lancie has a few vulnerabilities in access control for
+different roles.
+
+To further extend this work, the next step of this project is to generalize our
+security policy synthesizer to be applicable for all spring web applications.
+%
+Currently, we limited our application selection to \lancie due to time
+constrain and the security-sensitive events detection is based on our
+observation to \lancie.
+%
+Another thing we plan to do in the future is to automatically generate the
+vulnerability report to allow the process to scale to more applications.
+%
+We also plan to add more fields for statements in each function to potentially
+recognize more types of vulnerabilities.
