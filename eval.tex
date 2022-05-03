@@ -11,6 +11,7 @@
 \subsection{Implementation}
 
 \subsection{Vulnerabilities Detection}
+Most software has the need to use and modify the database, but different roles should have different permissions to operate the database. Once there is a role in operating the database incorrectly, it will cause a lot of losses to the enterprise. However, when software engineers develop software, it is possible to forget to check permissions, which leads to some Vulnerabilities. Therefore, from our generated policies, we can easily observe what Vulnerabilities are in the software.
 
 \onecolumn
 \begin{sidewaysfigure}[p]
@@ -29,6 +30,39 @@
 "Resource": "User"
     \end{lstlisting}                                     &
     Modify the database without checking the role                                                    \\
+    \hline
+    
+    \hline
+    ch.wisv.areafiftylan. extras.mailupdates. controller. SubscriptionController &
+    org.springframework. http.ResponseEntity addSubscription(ch. wisv.areafiftylan. extras.mailupdates. model. SubscriptionDTO)      &
+    \begin{lstlisting}
+"Principal": null,
+"Action": "addSubscription",
+"Resource": "Subscription"
+    \end{lstlisting}                                     &
+    Modify the database without checking the role                                                    \\
+    \hline
+    
+    \hline
+    ch.wisv.areafiftylan. products.controller. OrderRestController:  org.springframework. http.ResponseEntity &
+    createOrder (ch.wisv. areafiftylan. products.model. TicketDTO) &
+    \begin{lstlisting}
+"Principal": null,
+"Action": "create",
+"Resource": "Order"
+    \end{lstlisting}                                     &
+    Modify the database without checking the role                                                    \\
+    \hline
+    
+    \hline
+    ch.wisv. areafiftylan.web. sponsor. controller. SponsorController &
+    org.springframework. http.ResponseEntity  createSponsor(ch. wisv.areafiftylan. web.sponsor. model.Sponsor)   &
+    \begin{lstlisting}
+"Principal":[ROLE_COMMITTEE],
+"Action": "createSponsor",
+"Resource": "Sponsor"
+    \end{lstlisting}                                     &
+    The administrator should also have the right to operate                                                    \\
     \hline
   \end{tabular}
 \end{sidewaysfigure}

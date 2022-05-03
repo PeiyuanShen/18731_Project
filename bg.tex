@@ -24,7 +24,17 @@ clickjacking, etc.
 
 \subsection{Java Program Analysis}
 
-An access control policy is an expressive specification of what resources can be accessed, by whom, and under what conditions. Bakers \etal~\cite{Backes+etal:2018:Zelkova} presents a formalization of the Amazon Web Services (AWS) policy language  that lets users govern access to AWS resources. This paper also presents an analysis tool, ZELKOVA, for verifying policy properties.
+An access control policy is an expressive specification of what resources can be
+accessed, by whom, and under what conditions. Bakers
+\etal~\cite{Backes+etal:2018:Zelkova} presents a formalization of the Amazon Web
+Services (AWS) policy language  that lets users govern access to AWS resources.
+This paper also presents an analysis tool, ZELKOVA, for verifying policy
+properties.
+
+Static information-flow analysis (especially taint-analysis) is a key technique
+to compute where sensitive or untrusted data can propagate in a program.
+Points-to analysis is a fundamental static program analysis, computing what
+abstract objects a program expression may point to \cite{10.1145/3133926}.
 
 Doop~\cite{Bravenboer:2009:Doop} is a framework for Java pointer and taint
 analysis.
@@ -41,15 +51,45 @@ sound-modulo-analysis model of Java HashMap to improve precision and
 scalability. JackEE can analyze both Servlets and Spring APIs. JackEE is also
 evaluated through realistic benchmarks. It is proved to have a higher
 reachability than some other popular tools like Doop~\footnote{Publicly
-  available at: http://doop.program-analysis.org/.}.
+  available at: http://doop.program-analysis.srg/.}.
+
+Tripp \etal~\cite{10.1145/1542476.1542486} designed a static Taint Analysis for
+Java (TAJ) that can analyze applications of any size, especially industry-length
+programs. TAJ has the techniques to handle reflective calls, flow through
+containers, nested taint, and issues in generating useful reports.
+
+Lerch \etal~\cite{10.1145/2635868.2635878} present FlowTwist, a taint-analysis
+approach that works inside-out. They expose a design of the analysis approach
+based on the IFDS algorithm and several extensions to IFDS that enable reporting
+of error situations to security analysts.
+
+Sridharan \etal~\cite{10.1145/2076021.2048145} added framework-for-framework
+support to a state-of-the-art taint-analysis engine, which is useful for web
+applications that utilize one or more web frameworks.
+
+Mues \etal~\cite{10.1007/978-3-030-63461-2_7} present JAINT, a generic security
+analysis for JAVA Web-applications in which dynamic taint analysis is
+integrated. They also design a domain-specific language for users to specify
+taint-based security analyses for applications.
 
 Rather than taking a specification of this logic as input, RoleCast
-\etal~\cite{10.1145/2048066.2048146} is a first system capable of statically
-identifying security logic that mediates security-sensitive events in Web
-applications. It identifies security-critical variables and applies
-role-specific variable consistency analysis to find missing security checks.
-RoleCast performs well for PHP and JSP applications. This paper also
-demonstrated examples of bad security policies.
+\etal~\cite{10.1145/2048066.2048146} is a system that statically identifying
+security logic that mediates security-sensitive events in Web applications. It
+identifies security-critical variables and applies role-specific variable
+consistency analysis to find missing security checks. RoleCast performs well for
+PHP and JSP applications.
+
+Arzt \etal~\cite{10.1145/2594291.2594299} present FlowDroid, a static taint
+analysis for Android applications, which makes use of Android's precise
+lifecycle to handle callbacks, and context, flow, field and object-sensitivity
+to minimize faults. They proposed DroidBench, for Android applications
+taint-analysis evaluation. Yang \etal~\cite{6394931} proposes an approach called
+Leak Miner for detecting information leakage on Android applications on market
+site before users download them, which avoids runtime overhead to normal usage.
+Pauck \etal~\cite{10.1145/3236024.3236029} present ReproDroid, a framework
+allowing the accurate comparison of Android taint analysis tools, inferring the
+ground truth for data leaks in apps, in automatically applying tools to
+benchmarks, and in evaluating the obtained results.
 
 Ujcich \etal~\cite{Ujcich+etal:2020:EventScope} proposed a technique called
 EventScope to extend the vulnerability identification~\cite{6994333} to SDN.
