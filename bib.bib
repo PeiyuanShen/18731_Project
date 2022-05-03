@@ -109,30 +109,50 @@
 }
 
 @inproceedings{10.1145/2048066.2048146,
-author = {Son, Sooel and McKinley, Kathryn S. and Shmatikov, Vitaly},
-title = {RoleCast: Finding Missing Security Checks When You Do Not Know What Checks Are},
-year = {2011},
-isbn = {9781450309400},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/2048066.2048146},
-doi = {10.1145/2048066.2048146},
-abstract = {Web applications written in languages such as PHP and JSP are notoriously vulnerable to accidentally omitted authorization checks and other security bugs. Existing techniques that find missing security checks in library and system code assume that (1) security checks can be recognized syntactically and (2) the same pattern of checks applies universally to all programs. These assumptions do not hold for Web applications. Each Web application uses different variables and logic to check the user's permissions. Even within the application, security logic varies based on the user's role, e.g., regular users versus administrators. This paper describes ROLECAST, the first system capable of statically identifying security logic that mediates security-sensitive events (such as database writes) in Web applications, rather than taking a specification of this logic as input. We observe a consistent software engineering pattern-the code that implements distinct user role functionality and its security logic resides in distinct methods and files-and develop a novel algorithm for discovering this pattern in Web applications. Our algorithm partitions the set of file contexts (a coarsening of calling contexts) on which security-sensitive events are control dependent into roles. Roles are based on common functionality and security logic. ROLECAST identifies security-critical variables and applies rolespecific variable consistency analysis to find missing security checks. ROLECAST discovered 13 previously unreported, remotely exploitable vulnerabilities in 11 substantial PHP and JSP applications, with only 3 false positives.This paper demonstrates that (1) accurate inference of application- and role-specific security logic improves the security of Web applications without specifications, and (2) static analysis can discover security logic automatically by exploiting distinctive software engineering features.},
-booktitle = {Proceedings of the 2011 ACM International Conference on Object Oriented Programming Systems Languages and Applications},
-pages = {1069–1084},
-numpages = {16},
-keywords = {static analysis, access control, interprocedural analysis, PHP, user roles, security checks, security, JSP},
-location = {Portland, Oregon, USA},
-series = {OOPSLA '11}
+  author    = {Son, Sooel and McKinley, Kathryn S. and Shmatikov, Vitaly},
+  title     = {RoleCast: Finding Missing Security Checks When You Do Not Know What Checks Are},
+  year      = {2011},
+  isbn      = {9781450309400},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/2048066.2048146},
+  doi       = {10.1145/2048066.2048146},
+  abstract  = {Web applications written in languages such as PHP and JSP are notoriously vulnerable to accidentally omitted authorization checks and other security bugs. Existing techniques that find missing security checks in library and system code assume that (1) security checks can be recognized syntactically and (2) the same pattern of checks applies universally to all programs. These assumptions do not hold for Web applications. Each Web application uses different variables and logic to check the user's permissions. Even within the application, security logic varies based on the user's role, e.g., regular users versus administrators. This paper describes ROLECAST, the first system capable of statically identifying security logic that mediates security-sensitive events (such as database writes) in Web applications, rather than taking a specification of this logic as input. We observe a consistent software engineering pattern-the code that implements distinct user role functionality and its security logic resides in distinct methods and files-and develop a novel algorithm for discovering this pattern in Web applications. Our algorithm partitions the set of file contexts (a coarsening of calling contexts) on which security-sensitive events are control dependent into roles. Roles are based on common functionality and security logic. ROLECAST identifies security-critical variables and applies rolespecific variable consistency analysis to find missing security checks. ROLECAST discovered 13 previously unreported, remotely exploitable vulnerabilities in 11 substantial PHP and JSP applications, with only 3 false positives.This paper demonstrates that (1) accurate inference of application- and role-specific security logic improves the security of Web applications without specifications, and (2) static analysis can discover security logic automatically by exploiting distinctive software engineering features.},
+  booktitle = {Proceedings of the 2011 ACM International Conference on Object Oriented Programming Systems Languages and Applications},
+  pages     = {1069–1084},
+  numpages  = {16},
+  keywords  = {static analysis, access control, interprocedural analysis, PHP, user roles, security checks, security, JSP},
+  location  = {Portland, Oregon, USA},
+  series    = {OOPSLA '11}
 }
 
-@inproceedings{inproceedings,
-author = {Ujcich, Benjamin and Jero, Samuel and Skowyra, Richard and Gomez, Steven and Bates, Adam and Sanders, William and Okhravi, Hamed},
-year = {2020},
-month = {01},
-pages = {},
-title = {Automated Discovery of Cross-Plane Event-Based Vulnerabilities in Software-Defined Networking},
-doi = {10.14722/ndss.2020.24080}
+@inproceedings{Ujcich+etal:2020:EventScope,
+  author  = {Ujcich, Benjamin and Jero, Samuel and Skowyra, Richard and Gomez, Steven and Bates, Adam and Sanders, William and Okhravi, Hamed},
+  year    = {2020},
+  month   = {01},
+  journal = {Network and Distributed System Security Symposium},
+  title   = {Automated Discovery of Cross-Plane Event-Based Vulnerabilities in Software-Defined Networking},
+  doi     = {10.14722/ndss.2020.24080}
 }
 
-@ARTICLE{6994333,  author={Kreutz, Diego and Ramos, Fernando M. V. and Veríssimo, Paulo Esteves and Rothenberg, Christian Esteve and Azodolmolky, Siamak and Uhlig, Steve},  journal={Proceedings of the IEEE},   title={Software-Defined Networking: A Comprehensive Survey},   year={2015},  volume={103},  number={1},  pages={14-76},  doi={10.1109/JPROC.2014.2371999}}
+@article{6994333,
+  author  = {Kreutz, Diego and Ramos, Fernando M. V. and Veríssimo, Paulo Esteves and Rothenberg, Christian Esteve and Azodolmolky, Siamak and Uhlig, Steve},
+  journal = {Proceedings of the IEEE},
+  title   = {Software-Defined Networking: A Comprehensive Survey},
+  year    = {2015},
+  volume  = {103},
+  number  = {1},
+  pages   = {14-76},
+  doi     = {10.1109/JPROC.2014.2371999}
+}
+
+@inproceedings{Backes+etal:2018:policy,
+  author    = {Backes, John and Bolignano, Pauline and Cook, Byron and Dodge, Catherine and Gacek, Andrew and Luckow, Kasper and Rungta, Neha and Tkachuk, Oksana and Varming, Carsten},
+  booktitle = {2018 Formal Methods in Computer Aided Design (FMCAD)},
+  title     = {Semantic-based Automated Reasoning for AWS Access Policies using SMT},
+  year      = {2018},
+  volume    = {},
+  number    = {},
+  pages     = {1-9},
+  doi       = {10.23919/FMCAD.2018.8602994}
+}

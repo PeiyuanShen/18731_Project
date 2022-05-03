@@ -59,4 +59,37 @@ Sicheng
 \subsubsection{Identify security-sensitive events}
 Sicheng. TODO: also add code
 \subsubsection{Construct calling-context topology}
+
 \subsubsection{Generate security policies}
+
+\begin{figure} [btp]
+  \small
+  \begin{tabular}{rcp{5cm}}
+    Policy \hspace*{-3ex}    & $\rightarrow$ & \hspace*{-3ex} Statement$*$                                                      \\
+    Statement \hspace*{-3ex} & $\rightarrow$ & \hspace*{-3ex} (Principal, Action, Resource)                                     \\
+    Principal \hspace*{-3ex} & $\rightarrow$ & \hspace*{-3ex} Role $|$ Role(Condition) $|$ IsAuthenticated                      \\
+    Role \hspace*{-3ex}      & $\rightarrow$ & \hspace*{-3ex} ROLE\_ADMIN $|$ ROLE\_OPERATOR $|$ ROLE\_COMMITTEE $|$ ROLE\_USER \\
+    Condition \hspace*{-3ex} & $\rightarrow$ & \hspace*{-3ex} string$*$                                                         \\
+    Action \hspace*{-3ex}    & $\rightarrow$ & \hspace*{-3ex} string$*$                                                         \\
+    Resource \hspace*{-3ex}  & $\rightarrow$ & \hspace*{-3ex} string$*$                                                         \\
+  \end{tabular}
+  \caption{Simplified abstract syntax for our designed policy language}
+  \label{fig:dsl}
+\end{figure}
+
+We define our policy language in a simplified abstract syntax.
+%
+We take inspiration from the simplified abstract
+syntax~\cite{Backes+etal:2018:policy} defined for AWS and shows the abstract
+syntax for our designed policy language in \fref{fig:dsl}.
+%
+In this syntax, $*$ denotes a list of valued elements.
+%
+A policy consists of a list of statements.
+%
+Each statement is a tuple that contains three elements: principal, action, and
+resource.
+%
+The principal construct
+
+
